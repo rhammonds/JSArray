@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html ng-app="JavascriptArrayFunctions">
+
+  <head>
+    <meta name="viewport" content="initial-scale=.8" />
+    <link data-require="bootstrap@3.3.5" data-semver="3.3.5" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <link data-require="bootstrap@3.3.5" data-semver="3.3.5" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/superhero/bootstrap.min.css" />
+    <link data-require="bootstrap@3.3.5" data-semver="3.3.5" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="codemirror.css" />
+    <link rel="stylesheet" href="style.css" />
+    
+    <script data-require="angular.js@*" data-semver="1.6.1" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+    <script src="./lib/app.js"></script>
+    <script src="./lib/AppController.js"></script>
+    <script src="script.js"></script>
+    
+    <script src="lib/codemirror.js"></script>
+   <script src="lib/javascript.js"></script>
+
+  </head>
+
+  <body>
+    <div ng-controller="AppController">
+      <h1>JavaScript Array Functions</h1>
+      <label for="startText">1. Enter numbers delimited with a comma:</label>
+      <input class="input-sm" id="startText" type="text" width="30px" ng-model="startText" />
+      <br />
+      <label>2.</label>
+      <button ng-click="onReduceClick()" class="btn btn-default " style="">Reduce Sum</button>
+      <label>{{reducedText}}</label>
+      <input type="checkbox" ng-model="showCode2" />
+ Show Code        <br />
+      <p></p>
+      <div style="margin:10px">
+        
+<div ng-show="showCode2"><textarea id="SampleCode" name="SampleCode"  >
+var reducer = function(accumulator, item) {
+  return accumulator + item;
+};
+              
+var dataArray = $scope.startText.split(",").map(Number)
+$scope.reducedText = dataArray.reduce(reducer, 0)  
+</textarea></div>
+        
+      </div>
+      <label>3.</label>
+      <button ng-click="onJoinClick()" class="btn btn-default " style="">Join</button>
+      <label>{{joinText}}</label>
+      <input type="checkbox" ng-model="showCode3" />
+ Show Code        <br />
+      <p></p>
+      <div style="margin:10px">
+        
+<div ng-show="showCode3"><textarea id="SampleCode2" name="SampleCode2"  >
+var reducer = function(accumulator, item) {
+  return accumulator + item;
+};
+              
+var dataArray = $scope.startText.split(",")
+$scope.reducedText = dataArray.reduce(reducer, 0)  
+</textarea></div>
+
+      </div>
+      <label for="startTallyText">4. Enter data to tally delimited with a comma:</label>
+      <input class="input-sm" id="startTallyText" type="text" width="30px" ng-model="startTallyText" />
+      <br />
+      <label>5.</label>
+      <button ng-click="onTallyClick()" class="btn btn-default " style="">Tally</button>
+      <label>{{tallyText}}</label>
+      <input type="checkbox" ng-model="showCode5" />
+ Show Code        <br />
+      <p></p>
+      <div style="margin:10px">
+        
+<div ng-show="showCode5"><textarea id="SampleCode3" name="SampleCode3"  >
+var tallyReducer = function(tally, vote) {
+  if (!tally[vote]) {
+    tally[vote] = 1;
+  } else {
+    tally[vote] = tally[vote] + 1;
+  }
+
+  return tally;
+};          
+              
+var initialValue = {};
+var dataArray = $scope.startTallyText.split(",")
+$scope.tallyText = dataArray.reduce(tallyReducer, initialValue);
+       
+</textarea></div>        
+        
+      </div>
+      <label for="startTallyText">7. Enter data to map delimited with a comma:</label>
+      <input class="input-sm" id="startMapText" type="text" width="30px" ng-model="startMapText" />
+      <br />
+      <label>8.</label>
+      <button ng-click="onMapClick()" class="btn btn-default " style="">Map</button>
+      <label>{{mapText}}</label>
+      <input type="checkbox" ng-model="showCode8" />
+ Show Code        <br />
+      <p></p>
+      <div style="margin:10px">
+
+<div ng-show="showCode8"><textarea id="SampleCode4" name="SampleCode4"  >
+var  dataArray = $scope.startMapText.split(",");
+$scope.mapText = dataArray.map(function(item) {
+  return item * 2;
+});  
+</textarea></div>        
+    
+      </div>
+    </div>
+  </body>
+
+</html>
+    <script>
+      var editor = CodeMirror.fromTextArea(document.getElementById("SampleCode"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        continueComments: "Enter",
+        extraKeys: {"Ctrl-Q": "toggleComment"}
+      });
+      var editor = CodeMirror.fromTextArea(document.getElementById("SampleCode2"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        continueComments: "Enter",
+        extraKeys: {"Ctrl-Q": "toggleComment"}
+      }); 
+      var editor = CodeMirror.fromTextArea(document.getElementById("SampleCode3"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        continueComments: "Enter",
+        extraKeys: {"Ctrl-Q": "toggleComment"}
+      });   
+      var editor = CodeMirror.fromTextArea(document.getElementById("SampleCode4"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        continueComments: "Enter",
+        extraKeys: {"Ctrl-Q": "toggleComment"}
+      });         
+    </script>
